@@ -34,6 +34,18 @@ export enum EndpointsEnum {
    **/
   WSSR_PADRON_THIRTEEN = "https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA13",
   WSSR_PADRON_THIRTEEN_TEST = "https://awshomo.afip.gov.ar/sr-padron/webservices/personaServiceA13",
+
+  /**
+   * WS External VEP
+   **/
+  EXTERNALVEPRECEPTOR = "https://aws.afip.gov.ar/setiws/services/externalvepreceptorinterop",
+  EXTERNALVEPRECEPTOR_TEST = "https://awshomo.afip.gov.ar/setiws/services/externalvepreceptorinterop",
+
+  /**
+   * WS Constantacion de comprobantes
+   **/
+  WSCDC = "https://wswhomo.afip.gov.ar/WSCDC/service.asmx",
+  WSCDC_TEST = "https://servicios1.afip.gov.ar/WSCDC/service.asmx",
 }
 
 export enum SoapServiceVersion {

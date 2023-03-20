@@ -15,4 +15,10 @@ export enum WsdlPathEnum {
 
   WSSR_PADRON_THIRTEEN = "ws_sr_padron_a13-production.wsdl",
   WSSR_PADRON_THIRTEEN_TEST = "ws_sr_padron_a13.wsdl",
+
+  EXTERNALVEPRECEPTOR = "externalvepreceptorinterop-production.wsdl",
+  EXTERNALVEPRECEPTOR_TEST = "externalvepreceptorinterop.wsdl",
+  
+  WSCDC = "wscdc-production.wsdl",
+  WSCDC_TEST = "wscdc.wsdl",
 }
