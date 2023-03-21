@@ -1,3 +1,4 @@
+.env
 lib
 
 node_modules
@@ -5,6 +6,6 @@ package-lock.json
 pnpm-lock.yaml
 
 src/auth/tickets
-test-files
+ 
 
 .DS_Store   
