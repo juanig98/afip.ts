@@ -1,6 +1,6 @@
 import { EndpointsEnum } from "../enums";
 import { IComprobanteConstatarOutput, IDocumentosTipoConsultarOutput, IOpcionalesTipoConsultarOutput } from "../soap/interfaces/VerificationVouchers/ServiceSoap";
-import { IComprobanteConstatarOutput, IComprobantesModalidadConsultarOutput, IComprobantesTipoConsultarOutput, IServiceSoap12Soap, ServiceSoap12Types } from "../soap/interfaces/VerificationVouchers/ServiceSoap12"
+import { IComprobantesModalidadConsultarOutput, IComprobantesTipoConsultarOutput, IServiceSoap12Soap, ServiceSoap12Types } from "../soap/interfaces/VerificationVouchers/ServiceSoap12"
 import { ServiceNamesEnum } from "../soap/service-names.enum";
 import { WsdlPathEnum } from "../soap/wsdl-path.enum";
 import { AfipContext } from "../types";
