@@ -30,7 +30,6 @@ export class VerificationVouchersService extends AfipService<IServiceSoap12Soap>
      **/
     async dummy() {
         const client = await this.getClient();
-        const { Auth } = await this.getAuthTokens();
         const [output] = await client.ComprobanteDummyAsync({});
         return output;
     }

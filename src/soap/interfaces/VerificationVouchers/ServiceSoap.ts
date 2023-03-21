@@ -1,3 +1,6 @@
+import { Client } from "soap";
+import { SoapAsyncFunc } from "../../../types";
+
 /* tslint:disable:max-line-length no-empty-interface */
 export interface IComprobantesModalidadConsultarInput {
     Auth: ServiceSoapTypes.IAuth;
@@ -40,19 +43,25 @@ export interface IComprobanteConstatarOutput {
     ComprobanteConstatarResult: ServiceSoapTypes.IComprobanteConstatarResult;
 }
 
-export interface IComprobanteDummyInput {}
+export interface IComprobanteDummyInput { }
 
 export interface IComprobanteDummyOutput {
     ComprobanteDummyResult: ServiceSoapTypes.IComprobanteDummyResult;
 }
 
-export interface IServiceSoapSoap {
-    ComprobantesModalidadConsultar: (input: IComprobantesModalidadConsultarInput, cb: (err: any | null, result: IComprobantesModalidadConsultarOutput, raw: string,  soapHeader: {[k: string]: any; }) => any, options?: any, extraHeaders?: any) => void;
-    ComprobantesTipoConsultar: (input: IComprobantesTipoConsultarInput, cb: (err: any | null, result: IComprobantesTipoConsultarOutput, raw: string,  soapHeader: {[k: string]: any; }) => any, options?: any, extraHeaders?: any) => void;
-    DocumentosTipoConsultar: (input: IDocumentosTipoConsultarInput, cb: (err: any | null, result: IDocumentosTipoConsultarOutput, raw: string,  soapHeader: {[k: string]: any; }) => any, options?: any, extraHeaders?: any) => void;
-    OpcionalesTipoConsultar: (input: IOpcionalesTipoConsultarInput, cb: (err: any | null, result: IOpcionalesTipoConsultarOutput, raw: string,  soapHeader: {[k: string]: any; }) => any, options?: any, extraHeaders?: any) => void;
-    ComprobanteConstatar: (input: IComprobanteConstatarInput, cb: (err: any | null, result: IComprobanteConstatarOutput, raw: string,  soapHeader: {[k: string]: any; }) => any, options?: any, extraHeaders?: any) => void;
-    ComprobanteDummy: (input: IComprobanteDummyInput, cb: (err: any | null, result: IComprobanteDummyOutput, raw: string,  soapHeader: {[k: string]: any; }) => any, options?: any, extraHeaders?: any) => void;
+export interface IServiceSoapSoap extends Client {
+    ComprobantesModalidadConsultar: (input: IComprobantesModalidadConsultarInput, cb: (err: any | null, result: IComprobantesModalidadConsultarOutput, raw: string, soapHeader: { [k: string]: any; }) => any, options?: any, extraHeaders?: any) => void;
+    ComprobantesModalidadConsultarAsync: SoapAsyncFunc<IComprobantesModalidadConsultarInput, IComprobantesModalidadConsultarOutput>
+    ComprobantesTipoConsultar: (input: IComprobantesTipoConsultarInput, cb: (err: any | null, result: IComprobantesTipoConsultarOutput, raw: string, soapHeader: { [k: string]: any; }) => any, options?: any, extraHeaders?: any) => void;
+    ComprobantesTipoConsultarAsync: SoapAsyncFunc<IComprobantesTipoConsultarInput, IComprobantesTipoConsultarOutput>
+    DocumentosTipoConsultar: (input: IDocumentosTipoConsultarInput, cb: (err: any | null, result: IDocumentosTipoConsultarOutput, raw: string, soapHeader: { [k: string]: any; }) => any, options?: any, extraHeaders?: any) => void;
+    DocumentosTipoConsultarAsync: SoapAsyncFunc<IDocumentosTipoConsultarInput, IDocumentosTipoConsultarOutput>
+    OpcionalesTipoConsultar: (input: IOpcionalesTipoConsultarInput, cb: (err: any | null, result: IOpcionalesTipoConsultarOutput, raw: string, soapHeader: { [k: string]: any; }) => any, options?: any, extraHeaders?: any) => void;
+    OpcionalesTipoConsultarAsync: SoapAsyncFunc<IOpcionalesTipoConsultarInput, IOpcionalesTipoConsultarOutput>
+    ComprobanteConstatar: (input: IComprobanteConstatarInput, cb: (err: any | null, result: IComprobanteConstatarOutput, raw: string, soapHeader: { [k: string]: any; }) => any, options?: any, extraHeaders?: any) => void;
+    ComprobanteConstatarAsync: SoapAsyncFunc<IComprobanteConstatarInput, IComprobanteConstatarOutput>
+    ComprobanteDummy: (input: IComprobanteDummyInput, cb: (err: any | null, result: IComprobanteDummyOutput, raw: string, soapHeader: { [k: string]: any; }) => any, options?: any, extraHeaders?: any) => void;
+    ComprobanteDummyAsync: SoapAsyncFunc<IComprobanteDummyInput, IComprobanteDummyOutput>
 }
 
 export namespace ServiceSoapTypes {

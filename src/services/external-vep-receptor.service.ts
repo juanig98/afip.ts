@@ -40,16 +40,24 @@ export class ExternalVepReceptorService extends AfipService<IExternalvepreceptor
      * @returns object { createVEPReturn: number } Number given to the VEP 
      */
     async createVEP(vep: externalvepreceptorinteropTypes.IVEP, entidadDePago: number): Promise<IcreateVEPOutput> {
-        const { Auth } = await this.getAuthTokens();
-        const client = await this.getClient();
-        const [output] = await client.createVEPAsync({
-            vep,
-            sign: Auth.Sign,
-            token: Auth.Token,
-            entidadDePago
-        },)
+        try {
 
-        return output;
+            const { Auth } = await this.getAuthTokens();
+            const client = await this.getClient();
+            const [output] = await client.createVEPAsync({
+                vep,
+                sign: Auth.Sign,
+                token: Auth.Token,
+                entidadDePago
+            },)
+
+            return output;
+        } catch (error) {
+            console.log(error);
+            
+            throw new Error("");
+            
+        }
     }
 
     /**
