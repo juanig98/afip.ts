@@ -2,29 +2,23 @@ import { resolve } from "path";
 import { data } from "./mock-data/voucher";
 import { Afip } from "../src/afip";
 import fs from "fs";
+import * as dotenv from "dotenv";
+dotenv.config({ path: __dirname.substring(0, __dirname.search("dist/")).concat(".env") });
 
 describe("Services Test", () => {
   if (!process.env.CUIT) throw new Error("Add CUIT env.");
 
-  const key = fs.readFileSync(
-    resolve(__dirname, "test-files/afip_test_private_key.key"),
-    {
-      encoding: "utf8",
-    }
-  );
+  const key = fs.readFileSync(resolve(__dirname, "test-files/afip_test_private_key.key"), { encoding: "utf8" })
+  const cert = fs.readFileSync(resolve(__dirname, "test-files/afip_test_cert.crt"), { encoding: "utf8" })
 
-  const cert = fs.readFileSync(resolve(__dirname, "test-files/cert_test.crt"), {
-    encoding: "utf8",
+  let afip: Afip = new Afip({ key, cert, cuit: parseInt(process.env.CUIT), });
+
+
+  beforeEach((): void => {
+    jest.setTimeout(60000);
   });
-
-  let afip: Afip = new Afip({
-    key,
-    cert,
-    cuit: parseInt(process.env.CUIT),
-  });
-
-  beforeAll(async () => {});
-  afterAll(async () => {});
+  beforeAll(async () => { });
+  afterAll(async () => { });
   describe("Electronic Billings - createVoucher", () => {
     describe("Method Test - createVoucher", () => {
       it("should create a voucher from correct params", async () => {

@@ -86,13 +86,13 @@ export class VerificationVouchersService extends AfipService<IServiceSoap12Soap>
      * @returns object { ResultGet: { DocTipo: ServiceSoap12Types.IDocTipo[] };
      *  Errors: ServiceSoap12Types.IErrors,  Events: ServiceSoap12Types.IEvents }
     */
-   async documentosTipoConsultar(): Promise<IDocumentosTipoConsultarOutput> {
-       const client = await this.getClient();
-       const { Auth } = await this.getAuthTokens();
-       const [output] = await client.DocumentosTipoConsultarAsync({ Auth });
-       return output;
+    async documentosTipoConsultar(): Promise<IDocumentosTipoConsultarOutput> {
+        const client = await this.getClient();
+        const { Auth } = await this.getAuthTokens();
+        const [output] = await client.DocumentosTipoConsultarAsync({ Auth });
+        return output;
     }
-    
+
     /**
      * Asks to web service for codes and descriptions of data types that are optional.
      * 

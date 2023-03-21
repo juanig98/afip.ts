@@ -7,4 +7,4 @@ pnpm-lock.yaml
 src/auth/tickets
 test-files
 
-.DS_Store
+.DS_Store   

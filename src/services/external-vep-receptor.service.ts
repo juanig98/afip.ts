@@ -48,6 +48,7 @@ export class ExternalVepReceptorService extends AfipService<IExternalvepreceptor
             token: Auth.Token,
             entidadDePago
         },)
+
         return output;
     }
 

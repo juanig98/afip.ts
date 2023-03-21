@@ -1,5 +1,5 @@
-import moment from "moment";
-import { IVoucher } from "./../../src/interfaces/index";
+import moment from "moment"; 
+import { IVoucher } from "../../src/types";
 
 const date = new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
   .toISOString()
