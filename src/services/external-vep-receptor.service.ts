@@ -24,7 +24,7 @@ export class ExternalVepReceptorService extends AfipService<IExternalvepreceptor
      * dbserver : Database status, authserver : Autentication
      * server status}
      **/
-    async getServerStatus() {
+    async status() {
         const client = await this.getClient();
         const [output] = await client.dummyAsync({});
         return output;

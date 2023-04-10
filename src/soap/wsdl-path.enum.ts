@@ -19,6 +19,9 @@ export enum WsdlPathEnum {
   EXTERNALVEPRECEPTOR = "externalvepreceptorinterop-production.wsdl",
   EXTERNALVEPRECEPTOR_TEST = "externalvepreceptorinterop.wsdl",
   
+  VECONSUMER = "veconsumer.wsdl",
+  VECONSUMER_TEST = "veconsumer.wsdl",
+  
   WSCDC = "wscdc-production.wsdl",
   WSCDC_TEST = "wscdc.wsdl",
 }

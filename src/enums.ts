@@ -40,6 +40,12 @@ export enum EndpointsEnum {
    **/
   EXTERNALVEPRECEPTOR = "https://aws.afip.gov.ar/setiws/services/externalvepreceptorinterop",
   EXTERNALVEPRECEPTOR_TEST = "https://awshomo.afip.gov.ar/setiws/services/externalvepreceptorinterop",
+  
+  /**
+   * WS External VEP
+   **/
+  VECONSUMER = "https://stable-middleware-tecno-ext.afip.gob.ar/ve-ws/services/veconsumer",
+  VECONSUMER_TEST = "https://stable-middleware-tecno-ext.afip.gob.ar/ve-ws/services/veconsumer",
 
   /**
    * WS Constantacion de comprobantes

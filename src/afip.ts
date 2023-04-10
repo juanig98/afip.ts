@@ -9,6 +9,7 @@ import { RegisterScopeThirteenService } from "./services/register-scope-thirteen
 import { AfipContext, Context, AfipServiceSoapParam } from "./types";
 import { ExternalVepReceptorService } from "./services/external-vep-receptor.service";
 import { VerificationVouchersService } from "./services/verification-vouchers.service";
+import { VEConsumerService } from "./services/ve-consumer.service";
 
 export class Afip {
   private readonly _electronicBillingService: ElectronicBillingService;
@@ -18,6 +19,7 @@ export class Afip {
   private readonly _registerScopeTThirteenService: RegisterScopeThirteenService;
   private readonly _externalVepReceptorService: ExternalVepReceptorService;
   private readonly _verificationVouchersService: VerificationVouchersService;
+  private readonly _veConsumerService: VEConsumerService;
   private readonly context: AfipContext;
 
   constructor(context: Context) {
@@ -33,6 +35,7 @@ export class Afip {
     this._registerScopeTThirteenService = new RegisterScopeThirteenService(this.context);
     this._externalVepReceptorService = new ExternalVepReceptorService(this.context);
     this._verificationVouchersService = new VerificationVouchersService(this.context);
+    this._veConsumerService = new VEConsumerService(this.context);
 
   }
 
@@ -62,6 +65,10 @@ export class Afip {
 
   get verificationVouchersService(): VerificationVouchersService {
     return this._verificationVouchersService;
+  }
+
+  get veConsumerService(): VEConsumerService {
+    return this._veConsumerService;
   }
 
 
