@@ -86,10 +86,10 @@ export class VEConsumerService extends AfipService<IVEConsumerPortSoap> {
      * @param {number} incluirAdjuntos Indica si deben incluirse los Adjuntos vía MTOM (Ver el apéndice Documentos Relacionados) en la respuesta
      * @returns {Promise<IconsumirComunicacionOutput>} resultado
     */
-    async consumirComunicacion(idComunicacion: number): Promise<IconsumirComunicacionOutput> {
+    async consumirComunicacion(idComunicacion: number, incluirAdjuntos: boolean): Promise<IconsumirComunicacionOutput> {
         const client = await this.getClient();
         const authRequest = await this.authRequest();
-        const [output] = await client.consumirComunicacionAsync({ authRequest, idComunicacion, incluirAdjuntos: false });
+        const [output] = await client.consumirComunicacionAsync({ authRequest, idComunicacion, incluirAdjuntos });
         return output;
     }
 
@@ -108,7 +108,7 @@ export class VEConsumerService extends AfipService<IVEConsumerPortSoap> {
      * @param {number} incluirAdjuntos Indica si deben incluirse los Adjuntos vía MTOM (Ver el apéndice Documentos Relacionados) en la respuesta
      * @returns {Promise<IconsumirComunicacionOutput>} resultado
      */
-    async consumirComunicacionConAdjuntos(idComunicacion: number): Promise<{ Comunicacion: VEConsumerPortTypes.IComunicacion, attachments: IMTOMAttachments }> {
+    async consumirComunicacionWithAttachments(idComunicacion: number): Promise<{ Comunicacion: VEConsumerPortTypes.IComunicacion, attachments: IMTOMAttachments }> {
         const client = await this.getClient();
         const authRequest = await this.authRequest();
         const [output] = await client.consumirComunicacionAsync({ authRequest, idComunicacion, incluirAdjuntos: true });
