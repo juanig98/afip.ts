@@ -44,7 +44,7 @@ export enum EndpointsEnum {
   /**
    * WS External VEP
    **/
-  VECONSUMER = "https://stable-middleware-tecno-ext.afip.gob.ar/ve-ws/services/veconsumer",
+  VECONSUMER = "https://infraestructura.afip.gob.ar/ve-ws/services/veconsumer",
   VECONSUMER_TEST = "https://stable-middleware-tecno-ext.afip.gob.ar/ve-ws/services/veconsumer",
 
   /**

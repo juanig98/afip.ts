@@ -1,3 +1,5 @@
+
+import { IMTOMAttachments } from "soap";
 import { EndpointsEnum } from "../enums";
 import { IVEConsumerPortSoap, IconsultarComunicacionesOutput, IconsultarEstadosOutput, IconsultarSistemasPublicadoresOutput, IconsumirComunicacionOutput, VEConsumerPortTypes } from "../soap/interfaces/VEConsumerService/VEConsumerPort";
 import { ServiceNamesEnum } from "../soap/service-names.enum";
@@ -14,6 +16,7 @@ export class VEConsumerService extends AfipService<IVEConsumerPortSoap> {
             wsdl: WsdlPathEnum.VECONSUMER,
             wsdl_test: WsdlPathEnum.VECONSUMER_TEST,
             serviceName: ServiceNamesEnum.WSVECOSUMER,
+            options: { parseReponseAttachments: true }
         });
     }
 
@@ -77,6 +80,8 @@ export class VEConsumerService extends AfipService<IVEConsumerPortSoap> {
      * - La Comunicación debe tener como máxima antigüedad 360 días.
      * - La Comunicación solicitada debe pertenecer a la Cuit indicada en AuthRequest.cuitRepresentada.
      * 
+     * **NO INCLUYE ATTACHMENTS**
+     * 
      * @param {number} idComunicacion Id de la Comunicación
      * @param {number} incluirAdjuntos Indica si deben incluirse los Adjuntos vía MTOM (Ver el apéndice Documentos Relacionados) en la respuesta
      * @returns {Promise<IconsumirComunicacionOutput>} resultado
@@ -84,8 +89,30 @@ export class VEConsumerService extends AfipService<IVEConsumerPortSoap> {
     async consumirComunicacion(idComunicacion: number, incluirAdjuntos: boolean): Promise<IconsumirComunicacionOutput> {
         const client = await this.getClient();
         const authRequest = await this.authRequest();
-        const [output] = await client.consumirComunicacionAsync({ authRequest, idComunicacion, incluirAdjuntos });
+        const [output] = await client.consumirComunicacionAsync({ authRequest, idComunicacion, incluirAdjuntos: true });
         return output;
+    }
+
+    /** 
+     * 
+     * El Sistema sólo recupera Comunicaciones que cumplan con las siguientes restricciones:
+     * - La Comunicación debe ser realizada por un Sistema publicador que no se encuentre asociado al servicio “e-ventanilla-int-2” es decir a Comunicaciones 
+     * internas de AFIP. Para identificar los Sistemas publicadores permitidos para exponer y consumir Comunicaciones vía Web Services puede ver más 
+     * información del uso del mensaje ConsultarSistemas (ver seccion “Consultar Sistemas”).
+     * - La Comunicación debe tener como máxima antigüedad 360 días.
+     * - La Comunicación solicitada debe pertenecer a la Cuit indicada en AuthRequest.cuitRepresentada.
+     * 
+     * **INCLUYE ATTACHMENTS**
+     * 
+     * @param {number} idComunicacion Id de la Comunicación
+     * @param {number} incluirAdjuntos Indica si deben incluirse los Adjuntos vía MTOM (Ver el apéndice Documentos Relacionados) en la respuesta
+     * @returns {Promise<IconsumirComunicacionOutput>} resultado
+     */
+    async consumirComunicacionConAdjuntos(idComunicacion: number): Promise<{ Comunicacion: VEConsumerPortTypes.IComunicacion, attachments: IMTOMAttachments }> {
+        const client = await this.getClient();
+        const authRequest = await this.authRequest();
+        const [output] = await client.consumirComunicacionAsync({ authRequest, idComunicacion, incluirAdjuntos: true });
+        return { Comunicacion: output.Comunicacion, attachments: client.lastResponseAttachments };
     }
 
     /**
