@@ -81,13 +81,13 @@ export namespace externalvepreceptorinteropTypes {
         /** http://interoperable.cpvep.model.domain.pago.seti.osiris.afip.gov#xs:int(undefined) */
         campo: number;
         /** http://interoperable.cpvep.model.domain.pago.seti.osiris.afip.gov#xs:string(undefined) */
-        campoTipo: string;
+        campoTipo?: string;
         /** http://interoperable.cpvep.model.domain.pago.seti.osiris.afip.gov#xs:string(undefined) */
-        campoDesc: string;
+        campoDesc?: string;
         /** http://interoperable.cpvep.model.domain.pago.seti.osiris.afip.gov#xs:string(undefined) */
         contenido: string;
         /** http://interoperable.cpvep.model.domain.pago.seti.osiris.afip.gov#xs:string(undefined) */
-        contenidoDesc: string;
+        contenidoDesc?: string;
     }
     export interface IDetalles {
         Detalle: externalvepreceptorinteropTypes.IDetalle[];
@@ -96,7 +96,7 @@ export namespace externalvepreceptorinteropTypes {
         /** http://interoperable.cpvep.model.domain.pago.seti.osiris.afip.gov#xs:int(undefined) */
         impuesto: number;
         /** http://interoperable.cpvep.model.domain.pago.seti.osiris.afip.gov#xs:string(undefined) */
-        impuestoDesc: string;
+        impuestoDesc?: string;
         /** http://interoperable.cpvep.model.domain.pago.seti.osiris.afip.gov#xs:double(undefined) */
         importe: number;
     }
