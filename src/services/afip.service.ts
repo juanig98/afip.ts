@@ -111,6 +111,9 @@ export class AfipService<T extends Client> {
    * @param params Parameters to send
    **/
   protected async getAuthTokens(): Promise<WSAuthParam> {
+
+    console.log({ context: this.context, tokens: this._tokens });
+
     if (this._tokens) {
       if (AccessTicket.hasExpired(this._tokens.expirationDate)) {
         if (this.context.handleTicket) {
