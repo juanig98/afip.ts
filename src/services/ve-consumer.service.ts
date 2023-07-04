@@ -16,10 +16,11 @@ export class VEConsumerService extends AfipService<IVEConsumerPortSoap> {
             wsdl: WsdlPathEnum.VECONSUMER,
             wsdl_test: WsdlPathEnum.VECONSUMER_TEST,
             serviceName: ServiceNamesEnum.WSVECOSUMER,
+            v12: true,
             options: { parseReponseAttachments: true }
         });
     }
-     /** Document: https://www.afip.gob.ar/ws/WSCDCV1/WSCDC_manual_desarrollador_v.2.pdf  */
+    /** Document: https://www.afip.gob.ar/ws/WSCDCV1/WSCDC_manual_desarrollador_v.2.pdf  */
 
     /**
      * Asks to web service for servers status
