@@ -19,13 +19,7 @@ export class VEConsumerService extends AfipService<IVEConsumerPortSoap> {
             options: { parseReponseAttachments: true }
         });
     }
-
-    private async authRequest(): Promise<VEConsumerPortTypes.IauthRequest> {
-        const { Auth } = await this.getAuthTokens();
-        return { cuitRepresentada: Auth.Cuit, token: Auth.Token, sign: Auth.Sign }
-    }
-
-    /** Document: https://www.afip.gob.ar/ws/WSCDCV1/WSCDC_manual_desarrollador_v.2.pdf  */
+     /** Document: https://www.afip.gob.ar/ws/WSCDCV1/WSCDC_manual_desarrollador_v.2.pdf  */
 
     /**
      * Asks to web service for servers status
@@ -54,7 +48,8 @@ export class VEConsumerService extends AfipService<IVEConsumerPortSoap> {
      */
     async consultarComunicaciones(filter: VEConsumerPortTypes.Ifilter): Promise<IconsultarComunicacionesOutput> {
         const client = await this.getClient();
-        const authRequest = await this.authRequest();
+        const { Auth } = await this.getAuthTokens();
+        const authRequest: VEConsumerPortTypes.IauthRequest = { cuitRepresentada: Auth.Cuit, sign: Auth.Sign, token: Auth.Token };
         const [output] = await client.consultarComunicacionesAsync({ authRequest, filter });
         return output;
     }
@@ -67,7 +62,8 @@ export class VEConsumerService extends AfipService<IVEConsumerPortSoap> {
      */
     async consultarSistemasPublicadores(idSistemaPublicador: number): Promise<IconsultarSistemasPublicadoresOutput> {
         const client = await this.getClient();
-        const authRequest = await this.authRequest();
+        const { Auth } = await this.getAuthTokens();
+        const authRequest: VEConsumerPortTypes.IauthRequest = { cuitRepresentada: Auth.Cuit, sign: Auth.Sign, token: Auth.Token };
         const [output] = await client.consultarSistemasPublicadoresAsync({ authRequest, idSistemaPublicador });
         return output;
     }
@@ -88,7 +84,8 @@ export class VEConsumerService extends AfipService<IVEConsumerPortSoap> {
     */
     async consumirComunicacion(idComunicacion: number): Promise<IconsumirComunicacionOutput> {
         const client = await this.getClient();
-        const authRequest = await this.authRequest();
+        const { Auth } = await this.getAuthTokens();
+        const authRequest: VEConsumerPortTypes.IauthRequest = { cuitRepresentada: Auth.Cuit, sign: Auth.Sign, token: Auth.Token };
         const [output] = await client.consumirComunicacionAsync({ authRequest, idComunicacion, incluirAdjuntos: false });
         return output;
     }
@@ -110,7 +107,8 @@ export class VEConsumerService extends AfipService<IVEConsumerPortSoap> {
      */
     async consumirComunicacionWithAttachments(idComunicacion: number): Promise<{ Comunicacion: VEConsumerPortTypes.IComunicacion, attachments: IMTOMAttachments }> {
         const client = await this.getClient();
-        const authRequest = await this.authRequest();
+        const { Auth } = await this.getAuthTokens();
+        const authRequest: VEConsumerPortTypes.IauthRequest = { cuitRepresentada: Auth.Cuit, sign: Auth.Sign, token: Auth.Token };
         const [output] = await client.consumirComunicacionAsync({ authRequest, idComunicacion, incluirAdjuntos: true });
         return { Comunicacion: output.Comunicacion, attachments: client.lastResponseAttachments };
     }
@@ -122,7 +120,8 @@ export class VEConsumerService extends AfipService<IVEConsumerPortSoap> {
      */
     async consultarEstados(): Promise<IconsultarEstadosOutput> {
         const client = await this.getClient();
-        const authRequest = await this.authRequest();
+        const { Auth } = await this.getAuthTokens();
+        const authRequest: VEConsumerPortTypes.IauthRequest = { cuitRepresentada: Auth.Cuit, sign: Auth.Sign, token: Auth.Token };
         const [output] = await client.consultarEstadosAsync({ authRequest });
         return output;
     }
