@@ -89,12 +89,10 @@ export class AfipService<T extends Client> {
   public async logIn(): Promise<WSAuthTokens> {
     if (!this._tokens) {
       if (this.context.handleTicket)
-        throw new Error(
-          "Tokens are not defined yet. Set it when Afip class is instanced."
-        );
+        throw new Error("Tokens are not defined yet. Set it when Afip class is instanced.");
 
       let ticket = await this._afipAuth.getLocalAccessTicket(this._serviceName);
-
+ 
       if (!ticket?.isAccessTicketValid()) {
         ticket = await this._afipAuth.getAccessTicket(this._serviceName);
         await this._afipAuth.saveLocalAccessTicket(ticket, this._serviceName);
@@ -112,14 +110,8 @@ export class AfipService<T extends Client> {
    **/
   protected async getAuthTokens(): Promise<WSAuthParam> {
 
-
     if (this._tokens) {
-      console.log({ tokens: this._tokens, hasExpired: AccessTicket.hasExpired(this._tokens.expirationDate) });
-      if (AccessTicket.hasExpired(this._tokens.expirationDate)) {
-        if (this.context.handleTicket) {
-          throw new Error("Tokens expired.");
-        }
-      } else {
+      if (!AccessTicket.hasExpired(this._tokens.expirationDate)) {
         return {
           Auth: {
             Cuit: this.context.cuit,
@@ -127,6 +119,10 @@ export class AfipService<T extends Client> {
             Token: this._tokens.token,
           },
         };
+      }
+
+      if (this.context.handleTicket) {
+        throw new Error("Tokens expired.");
       }
     }
 
